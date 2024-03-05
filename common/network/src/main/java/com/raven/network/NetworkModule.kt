@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -24,12 +25,27 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    @Named("apiKeyInterceptorClient")
+    fun providerApiKeyInterceptorClient(): OkHttpClient =
+        OkHttpClient.Builder().apply {
+            addInterceptor(ApiKeyInterceptor())
+        }.build()
+
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        @Named("apiKeyInterceptorClient") apiKeyInterceptorClient: OkHttpClient
+    ): Retrofit {
         return Retrofit.Builder().baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create()).client(okHttpClient).build()
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .client(apiKeyInterceptorClient)
+            .build()
     }
 
     companion object {
-        private const val BASE_URL = ""
+        private const val BASE_URL = "https://api.nytimes.com/svc/"
     }
 }
