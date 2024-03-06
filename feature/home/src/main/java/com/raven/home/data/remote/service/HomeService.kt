@@ -1,11 +1,11 @@
 package com.raven.home.data.remote.service
 
+import com.raven.home.data.remote.response.HomeResponse
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface HomeService {
-
-    //TODO("Correctly apply the Path and its answers. The API Key is provided in your PDF document")
-
-    @GET("mostpopular/v2/emailed/7.json")
-    suspend fun getNews(): List<Unit>
+    @GET("mostpopular/v2/emailed/{period}.json")
+    suspend fun getNews(@Path("period") accountId : Int = 7): Response<HomeResponse>
 }

@@ -1,7 +1,9 @@
+import Dependencies.activityKtx
 import Dependencies.appCompat
 import Dependencies.coroutines
 import Dependencies.espressoCore
 import Dependencies.extJunit
+import Dependencies.fragmentKtx
 import Dependencies.gson
 import Dependencies.hilt
 import Dependencies.hiltCompiler
@@ -31,6 +33,8 @@ object Dependencies {
     const val hiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     const val lifeCycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycle}"
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
 
     /** Testing **/
 
@@ -65,6 +69,8 @@ fun DependencyHandler.general() {
     implementation(lifeCycle)
     implementation(coroutines)
     implementation(kotlinCore)
+    implementation(activityKtx)
+    implementation(fragmentKtx)
 }
 
 fun DependencyHandler.testing() {
