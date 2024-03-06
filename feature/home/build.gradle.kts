@@ -8,7 +8,6 @@ android {
     namespace = "com.raven.home"
 
     buildFeatures {
-        dataBinding = true
         viewBinding = true
     }
 }

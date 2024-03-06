@@ -10,6 +10,8 @@ object Versions {
     const val kotlinCore = "1.12.0"
     const val activityKtx = "1.8.2"
     const val fragmentKtx = "1.6.2"
+    const val glide = "4.16.0"
+    const val flexBox = "3.0.0"
 
     /** Testing **/
 

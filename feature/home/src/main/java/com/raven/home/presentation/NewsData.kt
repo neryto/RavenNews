@@ -1,10 +1,13 @@
 package com.raven.home.presentation
 
 data class NewsData(
-    val articles : List<Article>
-){
+    val articles: List<Article>
+) {
     data class Article(
-        val title : String,
-        val abstract : String,
+        val title: String,
+        val abstract: String,
+        val byline: String,
+        val publishedDate: String,
+        val thumbnailUrl: String?,
     )
 }

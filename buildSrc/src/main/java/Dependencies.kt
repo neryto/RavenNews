@@ -3,7 +3,9 @@ import Dependencies.appCompat
 import Dependencies.coroutines
 import Dependencies.espressoCore
 import Dependencies.extJunit
+import Dependencies.flexBox
 import Dependencies.fragmentKtx
+import Dependencies.glide
 import Dependencies.gson
 import Dependencies.hilt
 import Dependencies.hiltCompiler
@@ -35,6 +37,8 @@ object Dependencies {
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val flexBox = "com.google.android.flexbox:flexbox:${Versions.flexBox}"
 
     /** Testing **/
 
@@ -71,6 +75,8 @@ fun DependencyHandler.general() {
     implementation(kotlinCore)
     implementation(activityKtx)
     implementation(fragmentKtx)
+    implementation(glide)
+    implementation(flexBox)
 }
 
 fun DependencyHandler.testing() {
