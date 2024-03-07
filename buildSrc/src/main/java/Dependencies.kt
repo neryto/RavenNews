@@ -1,3 +1,6 @@
+import Dependencies.ANDROID_ROOM_COMPILER
+import Dependencies.ANDROID_ROOM_KTX
+import Dependencies.ANDROID_ROOM_RUNTIME
 import Dependencies.activityKtx
 import Dependencies.appCompat
 import Dependencies.coroutines
@@ -39,6 +42,11 @@ object Dependencies {
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val flexBox = "com.google.android.flexbox:flexbox:${Versions.flexBox}"
+    const val ANDROID_ROOM_RUNTIME = "androidx.room:room-runtime:${Versions.room}"
+    const val ANDROID_ROOM_KTX = "androidx.room:room-ktx:${Versions.room}"
+    const val ANDROID_ROOM_COMPILER = "androidx.room:room-compiler:${Versions.room}"
+
+
 
     /** Testing **/
 
@@ -77,6 +85,9 @@ fun DependencyHandler.general() {
     implementation(fragmentKtx)
     implementation(glide)
     implementation(flexBox)
+    implementation(ANDROID_ROOM_RUNTIME)
+    implementation(ANDROID_ROOM_KTX)
+    kapt(ANDROID_ROOM_COMPILER)
 }
 
 fun DependencyHandler.testing() {

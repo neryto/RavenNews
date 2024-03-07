@@ -12,6 +12,7 @@ object Versions {
     const val fragmentKtx = "1.6.2"
     const val glide = "4.16.0"
     const val flexBox = "3.0.0"
+    const val room = "2.5.1"
 
     /** Testing **/
 
