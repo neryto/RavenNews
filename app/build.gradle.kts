@@ -15,6 +15,6 @@ dependencies {
     navigation()
 
     implementation(project(":core"))
-    implementation(project(":feature:home"))
+    implementation(project(":feature:list"))
     implementation(project(":common:network"))
 }

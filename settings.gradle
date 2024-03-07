@@ -16,4 +16,4 @@ rootProject.name = "RavenNews"
 include ':app'
 include ':common:network'
 include ':core'
-include ':feature:home'
+include ':feature:list'
