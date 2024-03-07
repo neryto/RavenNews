@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.raven.core.utils.loadImage
 import com.raven.home.R
 import com.raven.home.databinding.NewsItemBinding
 import com.raven.home.presentation.NewsData
@@ -42,13 +43,6 @@ class NewsAdapter(
                 }
             }
         }
-
-        private fun ImageView.loadImage(url: String?) {
-            Glide.with(this.context)
-                .load(url)
-                .into(this)
-        }
-
     }
 
 }
