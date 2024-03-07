@@ -17,11 +17,14 @@ import Dependencies.kotlinCore
 import Dependencies.lifeCycle
 import Dependencies.logginInterceptor
 import Dependencies.material
+import Dependencies.mockk
 import Dependencies.navigationFragment
 import Dependencies.navigationUI
 import Dependencies.okHttp
 import Dependencies.retrofit
 import Dependencies.retrofitConverter
+import Dependencies.testCoroutines
+import Dependencies.turbine
 import ext.androidTestImplementation
 import ext.implementation
 import ext.kapt
@@ -52,6 +55,9 @@ object Dependencies {
 
     const val junit = "junit:junit:${Versions.junit}"
     const val extJunit = "androidx.ext.test.ext:junit:${Versions.extJunit}"
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
+    const val testCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2"
+    const val turbine = "app.cash.turbine:turbine:0.13.0"
     const val espressoCore = "androidx.ext.test.espresso:espresso-core:${Versions.espresso}"
 
     /** Network **/
@@ -92,6 +98,9 @@ fun DependencyHandler.general() {
 
 fun DependencyHandler.testing() {
     testImplementation(junit)
+    testImplementation(mockk)
+    testImplementation(testCoroutines)
+    testImplementation(turbine)
     androidTestImplementation(extJunit)
     androidTestImplementation(espressoCore)
 }
