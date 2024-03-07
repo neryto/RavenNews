@@ -16,5 +16,6 @@ dependencies {
 
     implementation(project(":core"))
     implementation(project(":feature:list"))
+    implementation(project(":feature:detail"))
     implementation(project(":common:network"))
 }

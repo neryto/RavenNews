@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,10 +14,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap.WRAP
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.raven.core.CommunicationViewModel
 import com.raven.home.R
-import com.raven.home.databinding.DetailItemBinding
-import com.raven.home.databinding.HomeFragmentBinding
+import com.raven.home.databinding.NewsFragmentBinding
 import com.raven.home.presentation.NewsData
 import com.raven.home.presentation.viewmodel.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,39 +25,40 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class NewsFragment : Fragment() {
 
-    private val homeViewModel : NewsViewModel by viewModels()
-    private lateinit var binding : HomeFragmentBinding
+    private val newsViewModel: NewsViewModel by viewModels()
+    private val communicationViewModel : CommunicationViewModel by activityViewModels()
+    private lateinit var binding: NewsFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = HomeFragmentBinding.inflate(inflater,container,false)
+        binding = NewsFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupCollectors()
-        homeViewModel.getNews()
+        newsViewModel.getNews()
     }
 
     private fun setupCollectors() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    homeViewModel.error.collect{error->
-                        error?.let { notNullError->
+                    newsViewModel.error.collect { error ->
+                        error?.let { notNullError ->
                             showError(notNullError)
                         }
                     }
                 }
                 launch {
-                    homeViewModel.articles.collect{articles->
-                        articles?.let { notNullArticles->
+                    newsViewModel.articles.collect { articles ->
+                        articles?.let { notNullArticles ->
                             binding.recyclerViewNews.apply {
-                                adapter = NewsAdapter(notNullArticles){item ->
+                                adapter = NewsAdapter(notNullArticles) { item ->
                                     showDetail(item)
                                 }
                                 layoutManager = FlexboxLayoutManager(
@@ -73,19 +74,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun showDetail(item: NewsData.Article) {
-        BottomSheetDialog(requireContext()).apply {
-            val view: View = layoutInflater
-                .inflate(R.layout.detail_item, this@NewsFragment.binding.root, false)
-            val binding = DetailItemBinding.bind(view).apply {
-                tvTitle.text = item.title
-                tvBy.text = item.byline
-                tvDate.text = getString(R.string.published_date,item.publishedDate)
-                tvAbstract.text = item.abstract
-            }
-            setCancelable(true)
-            setContentView(binding.root)
-            show()
-        }
+        communicationViewModel.navigateToDetail("5")
     }
 
 
