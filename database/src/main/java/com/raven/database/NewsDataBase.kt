@@ -1,9 +1,9 @@
-package com.raven.home.data.local.db
+package com.raven.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.raven.home.data.local.dao.NewsDao
-import com.raven.home.data.local.entity.NewsEntity
+import com.raven.database.dao.NewsDao
+import com.raven.database.entity.NewsEntity
 
 @Database(entities = [NewsEntity::class], version = 1)
 abstract class NewsDataBase : RoomDatabase() {

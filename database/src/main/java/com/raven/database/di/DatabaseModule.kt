@@ -1,9 +1,8 @@
-package com.raven.home.di
+package com.raven.database.di
 
 import android.content.Context
 import androidx.room.Room
 import com.raven.database.NewsDataBase
-import com.raven.home.data.remote.interactor.NetworkInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,11 +12,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NewsModule {
-
+class DatabaseModule {
     @Provides
     @Singleton
-    fun networkInteractor(): NetworkInteractor =
-        NetworkInteractor()
-
+    fun databaseProvider(@ApplicationContext context: Context): NewsDataBase = Room.databaseBuilder(
+        context,
+        NewsDataBase::class.java,
+        "news_database"
+    ).build()
 }

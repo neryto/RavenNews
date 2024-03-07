@@ -1,8 +1,8 @@
-package com.raven.home.data.local
+package com.raven.repository
 
-import com.raven.home.data.local.db.NewsDataBase
-import com.raven.home.data.local.entity.NewsEntity
-import com.raven.home.domain.NewsLocalDataSource
+import com.raven.database.NewsDataBase
+import com.raven.database.entity.NewsEntity
+import com.raven.database.NewsLocalDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -14,6 +14,13 @@ constructor(private val database: NewsDataBase) : NewsLocalDataSource {
         withContext(Dispatchers.IO) {
             database.newsDao().getAll()
         }
+
+    override suspend fun getNew(id: String): NewsEntity?  =
+        withContext(Dispatchers.IO){
+            database.newsDao().getNew(id)
+        }
+
+
 
 
     override suspend fun saveNews(news: List<NewsEntity>) {

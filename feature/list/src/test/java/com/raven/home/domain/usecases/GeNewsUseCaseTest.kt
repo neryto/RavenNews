@@ -1,13 +1,13 @@
 package com.raven.home.domain.usecases
 
-import com.raven.home.data.local.entity.NewsEntity
+import com.raven.database.entity.NewsEntity
 import com.raven.home.data.remote.response.NewsResponse
 import com.raven.home.data.remote.response.NetworkResult
 import com.raven.home.domain.DomainResult
 import com.raven.home.domain.NewsDataSource
-import com.raven.home.domain.NewsLocalDataSource
+import com.raven.database.NewsLocalDataSource
 import com.raven.home.domain.mapper.GetNewsMapper
-import com.raven.home.presentation.NewsData
+import com.raven.home.domain.NewsData
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -69,6 +69,7 @@ class GeNewsUseCaseTest {
                         "",
                         "",
                         "",
+                        "",
                         ""
                     )
                 )
@@ -79,7 +80,7 @@ class GeNewsUseCaseTest {
         coEvery { dataSource.getNews() } returns flowOf(successNetworkResult)
         coEvery { localSource.saveNews(any()) } returns Unit
         coEvery { mapper.transformNetworkToDb(any()) } returns listOf()
-        coEvery { mapper.transformDomainToUI(any()) } returns expectedNewsData
+        coEvery { mapper.transformNetworkToUI(any()) } returns expectedNewsData
 
         val result = useCase.execute()
         result.collect { domainResult ->
@@ -109,7 +110,7 @@ class GeNewsUseCaseTest {
             //mock methods calls
             coEvery { dataSource.getNews() } returns flowOf(errorNetworkResult)
             coEvery { localSource.getNews() } returns null
-            coEvery { mapper.transformDomainToUI(any()) } returns expectedNewsData
+            coEvery { mapper.transformNetworkToUI(any()) } returns expectedNewsData
 
 
             val result = useCase.execute()
@@ -141,7 +142,7 @@ class GeNewsUseCaseTest {
             //mock methods calls
             coEvery { dataSource.getNews() } returns flowOf(errorNetworkResult)
             coEvery { localSource.getNews() } returns emptyList()
-            coEvery { mapper.transformDomainToUI(any()) } returns expectedNewsData
+            coEvery { mapper.transformNetworkToUI(any()) } returns expectedNewsData
 
 
             val result = useCase.execute()
@@ -172,6 +173,7 @@ class GeNewsUseCaseTest {
                             "",
                             "",
                             "",
+                            "",
                             ""
                         )
                     )
@@ -183,7 +185,7 @@ class GeNewsUseCaseTest {
             coEvery { dataSource.getNews() } returns flowOf(errorNetworkResult)
             coEvery { localSource.getNews() } returns listOf(
                 NewsEntity(
-                    id = 1,
+                    id = "1",
                     title = "",
                     resume = "",
                     byline = "",

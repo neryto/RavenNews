@@ -16,4 +16,6 @@ dependencies {
     di()
     general()
     implementation(project(":core"))
+    implementation(project(":database"))
+
 }

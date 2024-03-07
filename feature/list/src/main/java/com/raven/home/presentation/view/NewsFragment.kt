@@ -17,7 +17,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.raven.core.CommunicationViewModel
 import com.raven.home.R
 import com.raven.home.databinding.NewsFragmentBinding
-import com.raven.home.presentation.NewsData
+import com.raven.home.domain.NewsData
 import com.raven.home.presentation.viewmodel.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -74,7 +74,7 @@ class NewsFragment : Fragment() {
     }
 
     private fun showDetail(item: NewsData.Article) {
-        communicationViewModel.navigateToDetail("5")
+        communicationViewModel.navigateToDetail(item.id)
     }
 
 

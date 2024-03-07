@@ -4,9 +4,9 @@ import com.raven.core.bases.BaseUseCase
 import com.raven.home.data.remote.response.NetworkResult
 import com.raven.home.domain.DomainResult
 import com.raven.home.domain.NewsDataSource
-import com.raven.home.domain.NewsLocalDataSource
+import com.raven.database.NewsLocalDataSource
 import com.raven.home.domain.mapper.GetNewsMapper
-import com.raven.home.presentation.NewsData
+import com.raven.home.domain.NewsData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class GeNewsUseCase @Inject constructor(
                 is NetworkResult.Success -> {
                     //store news into db
                     localSource.saveNews(mapper.transformNetworkToDb(newsResult.data.results))
-                    emit(mapper.transformDomainToUI(newsResult))
+                    emit(mapper.transformNetworkToUI(newsResult))
                 }
                 else -> {
                     //an error was happen check if there are data into db
@@ -31,10 +31,10 @@ class GeNewsUseCase @Inject constructor(
                         //emit data from db
                             emit(mapper.transformDbToUI(notNullNews))
                         else
-                            emit(mapper.transformDomainToUI(newsResult))
+                            emit(mapper.transformNetworkToUI(newsResult))
                     } ?: run {
                         //emit the error
-                        emit(mapper.transformDomainToUI(newsResult))
+                        emit(mapper.transformNetworkToUI(newsResult))
                     }
                 }
             }

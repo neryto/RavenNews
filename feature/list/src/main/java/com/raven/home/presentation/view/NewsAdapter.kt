@@ -3,13 +3,11 @@ package com.raven.home.presentation.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.raven.core.utils.loadImage
 import com.raven.home.R
 import com.raven.home.databinding.NewsItemBinding
-import com.raven.home.presentation.NewsData
+import com.raven.home.domain.NewsData
 
 class NewsAdapter(
     private val news: List<NewsData.Article>,

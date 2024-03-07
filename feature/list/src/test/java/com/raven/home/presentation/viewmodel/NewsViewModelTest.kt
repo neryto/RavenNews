@@ -3,7 +3,7 @@ package com.raven.home.presentation.viewmodel
 import app.cash.turbine.test
 import com.raven.home.domain.DomainResult
 import com.raven.home.domain.usecases.GeNewsUseCase
-import com.raven.home.presentation.NewsData
+import com.raven.home.domain.NewsData
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.InjectMockKs
@@ -52,6 +52,7 @@ class NewsViewModelTest {
                 NewsData(
                     listOf(
                         NewsData.Article(
+                            "",
                             "",
                             "",
                             "",

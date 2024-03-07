@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raven.home.domain.DomainResult
 import com.raven.home.domain.usecases.GeNewsUseCase
-import com.raven.home.presentation.NewsData
+import com.raven.home.domain.NewsData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

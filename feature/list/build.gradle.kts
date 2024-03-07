@@ -19,5 +19,6 @@ dependencies {
     network()
     room()
     implementation(project(":core"))
+    implementation(project(":database"))
 
 }

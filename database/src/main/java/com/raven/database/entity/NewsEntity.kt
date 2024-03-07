@@ -1,12 +1,12 @@
-package com.raven.home.data.local.entity
+package com.raven.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
 data class NewsEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id : Int = 0,
+    @PrimaryKey
+    val id : String,
     val title: String,
     val resume: String,
     val byline: String,

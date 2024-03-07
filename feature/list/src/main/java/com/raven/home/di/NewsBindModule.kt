@@ -1,9 +1,9 @@
 package com.raven.home.di
 
 import com.raven.home.data.NewsRepository
-import com.raven.home.data.local.NewsLocalRepository
+import com.raven.repository.NewsLocalRepository
 import com.raven.home.domain.NewsDataSource
-import com.raven.home.domain.NewsLocalDataSource
+import com.raven.database.NewsLocalDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

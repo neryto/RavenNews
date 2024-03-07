@@ -1,9 +1,11 @@
-package com.raven.home.domain
+package com.raven.database
 
-import com.raven.home.data.local.entity.NewsEntity
+import com.raven.database.entity.NewsEntity
 
 interface NewsLocalDataSource {
     suspend fun getNews(): List<NewsEntity>?
+
+    suspend fun getNew(id:String) : NewsEntity?
     suspend fun saveNews(news:List<NewsEntity>)
 
 }
